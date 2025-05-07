@@ -1,0 +1,16 @@
+Folder structure
+
+my-static-site/
+│
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+└── server.js
+
+commands to run 
+
+npm init -y
+npm install express
+node server.js

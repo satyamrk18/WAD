@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>local storage</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 50px auto;
+        border: 2px solid black; 
+        width: 250px;
+        height: 250px;
+      }
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="heading">create a user</h1>
+    <div class="container">
+      <form>
+        <label>Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="name"
+          required
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+        <button type="button" id="submit" onclick="storedData()">Submit</button>
+      </form>
+    </div>
+    <h1 id="user-heading"></h1>
+    <script>
+      function storedData() {
+        let arr = JSON.parse(localStorage.getItem("UserData")) || [];
+        const username = document
+          .getElementById("username")
+          .value.trim()
+          .toLowerCase();
+        const password = document
+          .getElementById("password")
+          .value.trim()
+          .toLowerCase();
+
+        const data = {
+          name: username,
+          password: password,
+        };
+        arr.push(data);
+        localStorage.setItem("UserData", JSON.stringify(arr));
+
+        console.log(JSON.stringify(data));
+
+        //diaplay data
+        document.getElementById("user-heading").innerHTML = ` Recent Rser Hi, ${username} !`;
+
+
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        alert("data is saved !");
+      }
+    </script>
+  </body>
+</html>
